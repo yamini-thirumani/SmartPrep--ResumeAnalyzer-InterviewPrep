@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <section id="nav-bar">
+        <div id="container">    
+            <nav>
+                <h1 id="logo">Resume Analyzer</h1>
+                <ul id="nav-items">
+                    <li class="lis"><a href="#home">Home</a></li>
+                    <li class="lis"> <a href="#resume">Upload Resume</a></li>
+                    <li class="lis"><a href="#questions">Questions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section id="home">
+        <div id="home-container">
+            <div class="text">
+                <h3>Get Interview Preparation Done!</h3>
+                <p id="brief-home-text">
+                    Struggling to prepare for interviews? Our AI-powered Resume Analyzer takes your resume as input and generates 
+                    personalized interview questions based on the skills and experiences you’ve mentioned.
+                </p>
+                <ul class="features">
+                    <li>✅ Smart Question Generation</li>
+                    <li>✅ Industry-Specific Insights</li>
+                    <li>✅ Boost Your Confidence</li>
+                    <li>✅ No More Generic Prep</li>
+                </ul>
+            </div>
+            <div class="image-container">
+                <img src="i1.avif" alt="">
+            </div>
+        </div>
+    </section>
+
+</section> 
+<section id="resume">
+    <form action="/analyze" method="POST" enctype="multipart/form-data">
+        <div class="file-upload">
+            <label for="file-upload" class="custom-file-label"><h2>Upload Resume</h2></label>
+            <label for="file-upload" class="upload-btn">Choose File</label>
+            <input type="file" name="resume" id="file-upload" accept=".pdf, .txt">
+            <p id="file-name">No file chosen</p>
+        </div>
+                 
+        <label for="job-description"><h2>Job Description</h2></label>
+        <textarea name="job_description" id="job-description" placeholder="Enter job role or skills" required></textarea>
+        <!-- <button type="submit" class="upload-btn">Analyze Resume</button> -->
+        <button type="button" class="upload-btn" onclick="uploadResume()">Analyze Resume</button>
+
+    </form>
+    
+    
+</section>
+
+
+
+
+
+<section id="questions">
+    {% if questions %}
+    <h2>Generated Interview Questions:</h2>
+    <ul>
+        {% for question in questions %}
+        <li>{{ question }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}   
+</section>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
+
+    
